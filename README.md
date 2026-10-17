@@ -1,5 +1,7 @@
 # Портфолио — Максим Середа
 
+**Сайт:** https://el1tex.github.io/portfolio/
+
 Личный сайт-портфолио в стиле терминала. React + Vite, анимации на [anime.js](https://animejs.com/) и [Motion](https://motion.dev/).
 
 ## Запуск
@@ -10,6 +12,11 @@ npm run dev      # http://127.0.0.1:5173
 npm run build    # сборка в dist/
 ```
 
+## Публикация
+
+Каждый пуш в `main` собирает сайт и выкладывает его на GitHub Pages
+(`.github/workflows/deploy.yml`). Ход сборки — на вкладке **Actions**.
+
 ## Где что менять
 
 - `src/data.js` — весь текст сайта (RU и EN), проекты, ссылки.
@@ -19,6 +26,9 @@ npm run build    # сборка в dist/
 
 | Где | Что | Библиотека |
 | --- | --- | --- |
+| Загрузка | `npm install maxim-sereda`: спиннер, пакеты-навыки, прогресс-бар (`createTimer`, `createTimeline`) | anime.js |
+| Абзацы текста | печатаются, когда попадают в экран | anime.js |
+| Курсор | блок `▋` догоняет мышь, над ссылками — рамка (`createAnimatable`) | anime.js |
 | Hero, роль под именем | печатная машинка: печатает, стирает, меняет текст | Motion `animate` |
 | Hero, имя | буквы падают по одной (`splitText` + `createTimeline`) | anime.js |
 | Hero, сетка точек | волна от точки клика (`stagger` с `grid`) | anime.js |

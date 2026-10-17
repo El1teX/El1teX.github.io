@@ -193,7 +193,7 @@ export default function Shell({ t, lang, setLang, onMatrix }) {
 
   return (
     <Section id="shell" cmd="./" title={s.title} lang={lang}>
-      <TypeText className="muted shell__hint" text={s.hint} msPerChar={18} />
+      <TypeText className="muted shell__hint" text={s.hint} />
       <div className="shell__quick" data-reveal role="group" aria-label={t.ui.quick}>
         {QUICK.map((c) => (
           <button key={c} className="chip" onClick={() => run(c)}>

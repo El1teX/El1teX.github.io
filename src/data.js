@@ -1,5 +1,12 @@
 // Весь текст сайта в одном месте: правь здесь, компоненты подхватят сами.
 
+// Скриншоты импортируются, чтобы Vite добавил хеш в имя файла:
+// после обновления браузер не возьмёт старую версию из кеша.
+import migomImg from './assets/projects/migom.webp'
+import migomVideo from './assets/projects/migom.webm'
+import weatherImg from './assets/projects/weather.webp'
+import beadsImg from './assets/projects/beads.webp'
+
 export const links = {
   github: 'https://github.com/El1teX',
   telegram: 'https://t.me/exex37',
@@ -56,8 +63,8 @@ export const content = {
       list: [
         {
           id: 'migom',
-          image: 'projects/migom.webp',
-          video: 'projects/migom.webm',
+          image: migomImg,
+          video: migomVideo,
           name: 'Мигом',
           tag: 'fullstack · сервис доставки',
           desc: 'Сервис «купи и привези» с ролями клиента и курьера. Карта магазинов, маршруты по дорогам через OSRM, живое положение курьера по WebSocket. Геймификация: взаимный рейтинг, 16 достижений, баллы и магазин призов. Демо-страница проигрывает весь цикл заказа автоматически.',
@@ -66,7 +73,7 @@ export const content = {
         },
         {
           id: 'weather',
-          image: 'projects/weather.webp',
+          image: weatherImg,
           name: 'Что надеть',
           tag: 'Telegram Mini App · погода',
           desc: 'Погода в реальном времени и советы, как одеться. Мультяшная живая сцена неба, спутник-лиса, енот или обезьяна, который переодевается по погоде, почасовой прогноз и дуга солнца. Работает внутри Telegram: тема, кнопка «Назад», вибрация, облачное хранилище.',
@@ -76,7 +83,7 @@ export const content = {
         },
         {
           id: 'beads',
-          image: 'projects/beads.webp',
+          image: beadsImg,
           name: 'Beads',
           tag: 'трекер привычек',
           desc: 'Привычки как нити бус: каждый день — бусина, серии соединяются цветной нитью. Тепловая карта за 16 недель, статистика серий, светлая и тёмная тема, резервная копия в JSON. Полная работа с клавиатуры и учёт prefers-reduced-motion.',
@@ -228,8 +235,8 @@ export const content = {
       list: [
         {
           id: 'migom',
-          image: 'projects/migom.webp',
-          video: 'projects/migom.webm',
+          image: migomImg,
+          video: migomVideo,
           name: 'Migom',
           tag: 'fullstack · delivery service',
           desc: 'A "buy and bring" delivery service with client and courier roles. Store map, road routing via OSRM, live courier position over WebSockets. Gamification: mutual ratings, 16 achievements, points and a prize shop. A demo page plays the whole order flow automatically.',
@@ -238,7 +245,7 @@ export const content = {
         },
         {
           id: 'weather',
-          image: 'projects/weather.webp',
+          image: weatherImg,
           name: 'What to Wear',
           tag: 'Telegram Mini App · weather',
           desc: 'Real-time weather plus outfit advice. A cartoon sky scene, a fox, raccoon or monkey companion that dresses for the weather, hourly forecast and a sun arc. Runs inside Telegram with theme colors, back button, haptics and cloud storage.',
@@ -248,7 +255,7 @@ export const content = {
         },
         {
           id: 'beads',
-          image: 'projects/beads.webp',
+          image: beadsImg,
           name: 'Beads',
           tag: 'habit tracker',
           desc: 'Habits as strings of beads: each day is a bead, streaks are joined by a colored thread. 16-week heatmap, streak stats, light and dark themes, JSON backup. Fully keyboard-accessible and respects prefers-reduced-motion.',

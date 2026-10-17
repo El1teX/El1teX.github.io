@@ -5,7 +5,7 @@ import TypeText from './TypeText.jsx'
 export default function Contact({ t, lang }) {
   return (
     <Section id="contact" cmd="./" title={t.contact.title + '.sh'} lang={lang}>
-      <TypeText className="contact__lead" text={t.contact.lead} msPerChar={16} />
+      <TypeText className="contact__lead" text={t.contact.lead} />
       <pre className="contact__cmd" data-reveal>
         <span className="prompt">$</span> {t.contact.cmd}
       </pre>

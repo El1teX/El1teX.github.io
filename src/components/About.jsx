@@ -8,7 +8,7 @@ export default function About({ t, lang }) {
       <div className="about">
         <div className="about__text">
           {a.paragraphs.map((p, i) => (
-            <TypeText key={i} text={p} delay={i * 1500} />
+            <TypeText key={i} text={p} />
           ))}
         </div>
         <dl className="about__facts" data-reveal>

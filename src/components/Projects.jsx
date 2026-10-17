@@ -1,11 +1,11 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { createAnimatable } from 'animejs'
 import Section from './Section.jsx'
 import { prefersReducedMotion } from '../hooks/motionPrefs.js'
 import TypeText from './TypeText.jsx'
 
 // Видео грузится и играет, только пока карточка на экране. При «уменьшить движение» — постер.
-function ShotVideo({ src, poster, label }) {
+function ShotVideo({ src, poster, label, onError }) {
   const ref = useRef(null)
   useEffect(() => {
     const video = ref.current
@@ -18,13 +18,37 @@ function ShotVideo({ src, poster, label }) {
   }, [])
   return (
     <>
-      <video ref={ref} src={src} poster={poster} muted loop playsInline preload="none" aria-label={label} />
+      <video
+        ref={ref}
+        src={src}
+        poster={poster}
+        muted
+        loop
+        playsInline
+        preload="none"
+        aria-label={label}
+        onError={onError}
+      />
       <span className="card__badge">● demo</span>
     </>
   )
 }
 
+// «Экран терминала» вместо скриншота: если его нет или он не загрузился.
+function ShotPlaceholder({ p }) {
+  return (
+    <pre className="card__placeholder" aria-hidden="true">
+      <span className="amber">$</span> git clone {p.repo.replace('https://github.com/', '')}
+      {'\n'}
+      <span className="muted">Cloning into &apos;{p.repo.split('/').pop()}&apos;…</span>
+      {'\n'}
+      <span className="accent">{p.tag}</span>
+    </pre>
+  )
+}
+
 function ProjectCard({ p, t, index }) {
+  const [broken, setBroken] = useState(false)
   const ref = useRef(null)
   const anim = useRef(null)
 
@@ -52,19 +76,21 @@ function ProjectCard({ p, t, index }) {
   return (
     <article className="card" data-reveal ref={ref} onMouseMove={onMove} onMouseLeave={onLeave}>
       <a className="card__shot" href={p.demo || p.repo} target="_blank" rel="noreferrer" tabIndex={-1} aria-hidden="true">
-        {p.video ? (
-          <ShotVideo src={p.video} poster={p.image} label={p.name} />
+        {broken ? (
+          <ShotPlaceholder p={p} />
+        ) : p.video ? (
+          <ShotVideo src={p.video} poster={p.image} label={p.name} onError={() => setBroken(true)} />
         ) : p.image ? (
-          <img src={p.image} alt={p.name} loading="lazy" width="1280" height="800" />
+          <img
+            src={p.image}
+            alt={p.name}
+            loading="lazy"
+            width="1280"
+            height="800"
+            onError={() => setBroken(true)}
+          />
         ) : (
-          // Нет скриншота — показываем «экран терминала» с названием репозитория.
-          <pre className="card__placeholder" aria-hidden="true">
-            <span className="amber">$</span> git clone {p.repo.replace('https://github.com/', '')}
-            {'\n'}
-            <span className="muted">Cloning into &apos;{p.repo.split('/').pop()}&apos;…</span>
-            {'\n'}
-            <span className="accent">{p.tag}</span>
-          </pre>
+          <ShotPlaceholder p={p} />
         )}
       </a>
       <div className="card__head">

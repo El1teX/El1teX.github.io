@@ -62,7 +62,7 @@ export default function Timeline({ t, lang }) {
             <span className="tl__dot" />
             <span className="tl__year amber">{it.year}</span>
             <h3>{it.title}</h3>
-            <TypeText text={it.text} msPerChar={14} />
+            <TypeText text={it.text} />
           </li>
         ))}
         <li className="tl__item tl__item--next" data-reveal>

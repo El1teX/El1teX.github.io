@@ -7,12 +7,25 @@ import { prefersReducedMotion } from '../hooks/motionPrefs.js'
 const USER = 'El1teX'
 const WEEKS = 26
 const CACHE_KEY = 'gh-cache-v1'
+const LAST_KEY = 'gh-last-v1'
 const CACHE_TTL = 30 * 60 * 1000
 
 // Публичный API GitHub (60 запросов в час без токена) + открытый сервис календаря вкладов.
 // Кешируем в sessionStorage, чтобы не тратить лимит при каждом обновлении страницы.
 let inflight = null
-const loadGitHub = () => (inflight ??= fetchGitHub().catch((e) => ((inflight = null), Promise.reject(e))))
+// Если API недоступен (например, кончился лимит 60 запросов в час на IP),
+// показываем последние удачно загруженные данные из localStorage.
+const loadGitHub = () =>
+  (inflight ??= fetchGitHub().catch((e) => {
+    inflight = null
+    try {
+      const last = JSON.parse(localStorage.getItem(LAST_KEY))
+      if (last) return last
+    } catch {
+      // нет сохранённых данных
+    }
+    return Promise.reject(e)
+  }))
 
 async function fetchGitHub() {
   try {
@@ -63,6 +76,7 @@ async function fetchGitHub() {
   }
   try {
     sessionStorage.setItem(CACHE_KEY, JSON.stringify({ at: Date.now(), data }))
+    if (data.repos != null && data.commits.length) localStorage.setItem(LAST_KEY, JSON.stringify(data))
   } catch {
     // приватный режим — работаем без кеша
   }

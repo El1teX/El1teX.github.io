@@ -1173,3 +1173,21 @@ kbd {
     max-height: 70vh;
   }
 }
+
+/* ---------- шапка на средних экранах: ссылки не переносятся, вместо них меню ---------- */
+.nav__links a {
+  white-space: nowrap;
+}
+@media (max-width: 1000px) {
+  .nav__links,
+  .nav__k,
+  .progress__text {
+    display: none;
+  }
+  .nav__menu {
+    display: inline-flex;
+  }
+  .nav__menu.nav__btn {
+    margin-left: auto;
+  }
+}

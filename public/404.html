@@ -68,11 +68,6 @@
       var p = decodeURIComponent(location.pathname)
       document.getElementById('path').textContent = p
       document.getElementById('path2').textContent = p
-      // На GitHub Pages проект живёт в подпапке: /portfolio/
-      if (location.hostname.endsWith('github.io')) {
-        var seg = location.pathname.split('/')[1]
-        if (seg) document.getElementById('home').href = '/' + seg + '/'
-      }
     </script>
   </body>
 </html>

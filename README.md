@@ -1,6 +1,6 @@
 # Портфолио — Максим Середа
 
-**Сайт:** https://el1tex.github.io/portfolio/
+**Сайт:** https://el1tex.github.io/
 
 Личный сайт-портфолио в стиле терминала. React + Vite, анимации на [anime.js](https://animejs.com/) и [Motion](https://motion.dev/).
 
@@ -56,7 +56,7 @@ npm run og       # resume/og.html → public/og.png (1200×630)
 ```
 
 Оба скрипта используют установленный Chrome или Edge; другой путь можно указать в `CHROME_PATH`.
-Мета-теги Open Graph в `index.html` рассчитаны на адрес `https://el1tex.github.io/portfolio/` —
+Мета-теги Open Graph в `index.html` рассчитаны на адрес `https://el1tex.github.io/` —
 если сайт будет жить в другом месте, поправь `og:url` и `og:image`.
 
 ## Производительность

@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Максим Середа — резюме</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <style>
+      @page { size: A4; margin: 12mm 14mm; }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font: 9.6pt/1.45 Inter, 'Segoe UI', Arial, sans-serif;
+        color: #1b221d;
+      }
+      .mono { font-family: 'JetBrains Mono', Consolas, monospace; }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        border-bottom: 2px solid #1b221d;
+        padding-bottom: 10px;
+        margin-bottom: 14px;
+      }
+      h1 { font: 800 24pt/1 'JetBrains Mono', monospace; margin: 0 0 6px; letter-spacing: -0.03em; }
+      .role { font: 500 11pt 'JetBrains Mono', monospace; color: #138a4a; }
+      .contacts { text-align: right; font-size: 9pt; line-height: 1.6; }
+      .contacts a { color: inherit; text-decoration: none; }
+      h2 {
+        font: 800 10pt 'JetBrains Mono', monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #138a4a;
+        margin: 13px 0 5px;
+      }
+      h2::before { content: '$ '; color: #c27a1e; }
+      p { margin: 0 0 6px; }
+      .grid { display: grid; grid-template-columns: 118px 1fr; gap: 3px 12px; }
+      .grid dt { font-weight: 600; color: #4b574e; }
+      .grid dd { margin: 0; }
+      .project { margin-bottom: 8px; break-inside: avoid; }
+      .project__head { display: flex; justify-content: space-between; gap: 12px; }
+      .project h3 { font-size: 10.5pt; margin: 0; }
+      .project h3 span { font-weight: 400; color: #4b574e; }
+      .project a { font-size: 8.5pt; color: #138a4a; text-decoration: none; white-space: nowrap; }
+      .project ul { margin: 3px 0 0; padding-left: 16px; }
+      .project li { margin: 1px 0; }
+      .stack { font: 500 8.5pt 'JetBrains Mono', monospace; color: #4b574e; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1>Максим Середа</h1>
+        <div class="role">Frontend-разработчик · ищу стажировку</div>
+      </div>
+      <div class="contacts mono">
+        Ростов-на-Дону<br />
+        Telegram: <a href="https://t.me/exex37">@exex37</a><br />
+        GitHub: <a href="https://github.com/El1teX">github.com/El1teX</a>
+      </div>
+    </header>
+
+    <h2>о себе</h2>
+    <p>
+      Студент 3 курса ДГТУ. Делаю интерфейсы на React: от вёрстки и анимаций до работы с API и тестов.
+      Довожу проекты до публикации — с README, CI на GitHub Actions и деплоем на GitHub Pages.
+      Интересуюсь UI-дизайном и тем, как анимации помогают пользователю понять интерфейс.
+    </p>
+
+    <h2>образование</h2>
+    <dl class="grid">
+      <dt>2024 — н. в.</dt>
+      <dd>
+        <b>Донской государственный технический университет</b>, факультет «Информатика и вычислительная техника»,
+        направление 09.03.02 «Информационные системы и технологии», 3 курс
+      </dd>
+      <dt>2020 — 2024</dt>
+      <dd>
+        <b>Ставропольский многопрофильный колледж (СМК)</b>, специальность
+        «Информационные технологии и программирование»
+      </dd>
+    </dl>
+
+    <h2>навыки</h2>
+    <dl class="grid">
+      <dt>Frontend</dt>
+      <dd>React, TypeScript, JavaScript (ES2022+), HTML, CSS, адаптивная вёрстка, доступность (a11y)</dd>
+      <dt>Анимации</dt>
+      <dd>anime.js, Motion, SVG</dd>
+      <dt>Backend</dt>
+      <dd>Node.js, Express, Socket.IO, PostgreSQL, Prisma, REST, GraphQL (базово)</dd>
+      <dt>Инструменты</dt>
+      <dd>Vite, Git, GitHub Actions, Vitest, VS Code, Figma</dd>
+      <dt>Также</dt>
+      <dd>C++, C# — алгоритмы и структуры данных в рамках учёбы</dd>
+    </dl>
+
+    <h2>проекты</h2>
+    <div class="project">
+      <div class="project__head">
+        <h3>Мигом <span>— сервис доставки, fullstack</span></h3>
+        <a href="https://github.com/El1teX/deliver-service">github.com/El1teX/deliver-service</a>
+      </div>
+      <ul>
+        <li>Две роли — клиент и курьер; карта магазинов на Leaflet, маршруты по дорогам через OSRM.</li>
+        <li>Живое положение курьера и статусы заказа по WebSocket (Socket.IO).</li>
+        <li>Геймификация: взаимный рейтинг, 16 достижений, баллы и магазин призов; демо-режим с автосценарием.</li>
+        <li>Бэкенд на Express + Prisma + PostgreSQL, JWT-авторизация, валидация zod, тесты на Vitest и supertest.</li>
+      </ul>
+      <div class="stack">React 19 · Vite · Leaflet · Socket.IO · Node.js · TypeScript · Prisma · PostgreSQL</div>
+    </div>
+    <div class="project">
+      <div class="project__head">
+        <h3>Что надеть <span>— Telegram Mini App</span></h3>
+        <a href="https://el1tex.github.io/weather-wear/">el1tex.github.io/weather-wear</a>
+      </div>
+      <ul>
+        <li>Погода в реальном времени и советы по одежде; анимированная мультяшная сцена неба и спутник-персонаж.</li>
+        <li>Интеграция с Telegram: тема, кнопка «Назад», вибрация, облачное хранилище, геолокация.</li>
+        <li>Тесты логики на Vitest; публикация через GitHub Actions только после успешных тестов.</li>
+      </ul>
+      <div class="stack">React 18 · Vite · Open-Meteo API · Telegram Mini Apps SDK · Vitest</div>
+    </div>
+    <div class="project">
+      <div class="project__head">
+        <h3>Beads <span>— трекер привычек</span></h3>
+        <a href="https://el1tex.github.io/task-manager/">el1tex.github.io/task-manager</a>
+      </div>
+      <ul>
+        <li>Отметки по дням, серии, тепловая карта за 16 недель, светлая и тёмная тема, резервная копия в JSON.</li>
+        <li>Логика вынесена в отдельный пакет без зависимостей (npm workspaces) и покрыта тестами.</li>
+        <li>Полная работа с клавиатуры, подписи для скринридеров, учёт prefers-reduced-motion.</li>
+      </ul>
+      <div class="stack">React 18 · JavaScript · Vite · Vitest · GitHub Actions</div>
+    </div>
+    <div class="project">
+      <div class="project__head">
+        <h3>Учёт волонтёров <span>— хакатон «ВЕСНА ’25», команда 3–4 человека</span></h3>
+        <a href="https://github.com/c1nqe/VolontiersDSTU">github.com/c1nqe/VolontiersDSTU</a>
+      </div>
+      <ul>
+        <li>Платформа для волонтёров, организаторов и администраторов: заявки, согласование, учёт часов.</li>
+        <li>Моя часть — дизайн интерфейса и вёрстка.</li>
+      </ul>
+      <div class="stack">JavaScript · HTML · CSS · GraphQL</div>
+    </div>
+
+    <h2>сейчас изучаю</h2>
+    <p>Next.js, тестирование UI (Testing Library, Playwright), Figma и дизайн-системы.</p>
+  </body>
+</html>

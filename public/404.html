@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 — command not found</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #0a0d0b;
+        --text: #cfd8cf;
+        --muted: #6b7b6e;
+        --accent: #39ff88;
+        --amber: #ffb86b;
+        --err: #ff6b6b;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 16px;
+        background: var(--bg);
+        color: var(--text);
+        font: 15px/1.7 'JetBrains Mono', ui-monospace, Consolas, monospace;
+      }
+      body::after {
+        content: '';
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background: repeating-linear-gradient(to bottom, transparent 0 2px, rgba(0, 0, 0, 0.18) 2px 3px);
+      }
+      main { max-width: 640px; width: 100%; }
+      .code {
+        font-size: clamp(72px, 20vw, 160px);
+        font-weight: 800;
+        line-height: 1;
+        margin: 0 0 12px;
+        color: #fff;
+        text-shadow: 0 0 30px rgba(57, 255, 136, 0.4);
+        letter-spacing: -0.05em;
+      }
+      p { margin: 4px 0; }
+      .ps1 { color: var(--amber); }
+      .err { color: var(--err); }
+      .muted { color: var(--muted); }
+      a { color: var(--accent); }
+      .cursor { animation: blink 1s steps(1) infinite; color: var(--accent); }
+      @keyframes blink { 50% { opacity: 0; } }
+      @media (prefers-reduced-motion: reduce) { .cursor { animation: none; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="code">404</p>
+      <p><span class="ps1">guest@el1tex:~$</span> cd <span id="path"></span></p>
+      <p class="err">bash: cd: <span id="path2"></span>: No such file or directory</p>
+      <p class="muted">// такой страницы нет · this page does not exist</p>
+      <p style="margin-top: 20px">
+        <span class="ps1">guest@el1tex:~$</span> <a id="home" href="/">cd ~</a> <span class="cursor">▋</span>
+      </p>
+    </main>
+    <script>
+      var p = decodeURIComponent(location.pathname)
+      document.getElementById('path').textContent = p
+      document.getElementById('path2').textContent = p
+      // На GitHub Pages проект живёт в подпапке: /portfolio/
+      if (location.hostname.endsWith('github.io')) {
+        var seg = location.pathname.split('/')[1]
+        if (seg) document.getElementById('home').href = '/' + seg + '/'
+      }
+    </script>
+  </body>
+</html>

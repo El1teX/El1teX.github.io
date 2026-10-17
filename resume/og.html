@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Шаблон превью-картинки для ссылок (1200×630). Пересобрать: npm run og -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet" />
+    <style>
+      html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
+      body {
+        background: #0a0d0b;
+        color: #cfd8cf;
+        font-family: 'JetBrains Mono', monospace;
+        display: grid;
+        grid-template-columns: 1fr 360px;
+        align-items: center;
+        gap: 40px;
+        padding: 0 70px;
+        box-sizing: border-box;
+        position: relative;
+      }
+      body::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(to bottom, transparent 0 3px, rgba(0, 0, 0, 0.25) 3px 4px);
+      }
+      .bar { display: flex; gap: 10px; margin-bottom: 34px; }
+      .bar i { width: 16px; height: 16px; border-radius: 50%; display: block; }
+      .ps { color: #ffb86b; font-weight: 700; font-size: 26px; }
+      h1 {
+        font-size: 92px;
+        line-height: 1;
+        margin: 18px 0 22px;
+        color: #fff;
+        letter-spacing: -0.04em;
+        text-shadow: 0 0 40px rgba(57, 255, 136, 0.45);
+      }
+      .role { color: #39ff88; font-size: 32px; }
+      .role b { display: inline-block; width: 16px; height: 34px; background: #39ff88; vertical-align: -5px; margin-left: 6px; }
+      .meta { margin-top: 34px; font-size: 22px; color: #6b7b6e; }
+      .grid { display: grid; grid-template-columns: repeat(9, 1fr); gap: 22px; }
+      .grid span { width: 12px; height: 12px; border-radius: 50%; background: #39ff88; }
+    </style>
+  </head>
+  <body>
+    <div>
+      <div class="bar"><i style="background:#ff5f56"></i><i style="background:#ffbd2e"></i><i style="background:#27c93f"></i></div>
+      <div class="ps">$ whoami</div>
+      <h1>Максим<br />Середа</h1>
+      <div class="role">&gt; frontend-разработчик<b></b></div>
+      <div class="meta">React · Vite · anime.js · ДГТУ, ИиВТ</div>
+    </div>
+    <div class="grid" id="grid"></div>
+    <script>
+      // сетка точек с «волной» от центра, как на сайте
+      const g = document.getElementById('grid')
+      for (let y = 0; y < 9; y++)
+        for (let x = 0; x < 9; x++) {
+          const d = Math.hypot(x - 4, y - 4)
+          const s = document.createElement('span')
+          s.style.opacity = Math.max(0.15, 1 - Math.abs(d - 2.6) / 2.2).toFixed(2)
+          s.style.transform = `scale(${(0.8 + Math.max(0, 1 - Math.abs(d - 2.6) / 1.4)).toFixed(2)})`
+          g.append(s)
+        }
+    </script>
+  </body>
+</html>

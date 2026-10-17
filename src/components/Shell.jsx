@@ -2,11 +2,11 @@ import { useEffect, useRef, useState } from 'react'
 import { animate, stagger } from 'animejs'
 import Section from './Section.jsx'
 import { links } from '../data.js'
-import { prefersReducedMotion } from '../hooks/motionPrefs.js'
+import { prefersReducedMotion, setMotion } from '../hooks/motionPrefs.js'
 import TypeText from './TypeText.jsx'
 
 const SECTIONS = ['about', 'skills', 'projects', 'history', 'activity', 'contact']
-const COMMANDS = ['help', 'whoami', 'about', 'skills', 'projects', 'open', 'roadmap', 'contact', 'resume', 'cd', 'lang', 'matrix', 'clear', 'sudo', 'ls', 'date', 'echo']
+const COMMANDS = ['help', 'whoami', 'about', 'skills', 'projects', 'open', 'roadmap', 'contact', 'resume', 'cd', 'lang', 'motion', 'matrix', 'clear', 'sudo', 'ls', 'date', 'echo']
 
 const QUICK = ['help', 'whoami', 'projects', 'contact', 'resume', 'sudo hire maxim', 'matrix', 'clear']
 
@@ -137,6 +137,12 @@ export default function Shell({ t, lang, setLang, onMatrix }) {
         document.getElementById(target)?.scrollIntoView({ behavior: 'smooth' })
         break
       }
+      case 'motion':
+        if (arg === 'on' || arg === 'off') {
+          say(arg === 'on' ? t.ui.motionOn : t.ui.motionOff, 'ok')
+          setTimeout(() => setMotion(arg === 'on'), 400)
+        } else say('motion on | motion off', 'err')
+        break
       case 'lang':
         if (arg === 'ru' || arg === 'en') {
           setLang(arg)

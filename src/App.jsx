@@ -15,7 +15,7 @@ import Matrix from './components/Matrix.jsx'
 import Palette from './components/Palette.jsx'
 import Toast from './components/Toast.jsx'
 import Cursor from './components/Cursor.jsx'
-import { prefersReducedMotion } from './hooks/motionPrefs.js'
+import { prefersReducedMotion, setMotion, getMotionOverride, systemReducesMotion } from './hooks/motionPrefs.js'
 
 const KONAMI = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a']
 
@@ -70,7 +70,12 @@ export default function App() {
   const [bootShown, setBootShown] = useState(!booted)
   const [matrix, setMatrix] = useState(false)
   const [palette, setPalette] = useState(false)
-  const [toast, setToast] = useState(null)
+  // Если анимации выключены системой и посетитель ещё не выбирал сам — подсказываем, как включить.
+  const [toast, setToast] = useState(() =>
+    systemReducesMotion() && !getMotionOverride() && storage.get('sessionStorage', 'motionHint') !== '1'
+      ? content[lang].ui.motionHint
+      : null,
+  )
   const t = content[lang]
 
   useEffect(() => {
@@ -133,6 +138,12 @@ export default function App() {
       { id: 'gh', label: ui.github, keywords: 'github code', run: () => window.open(links.github, '_blank', 'noopener') },
       { id: 'lang', label: ui.lang, keywords: 'language язык ru en', run: () => setLang((l) => (l === 'ru' ? 'en' : 'ru')) },
       { id: 'theme', label: ui.theme, keywords: 'theme тема amber green', run: toggleTheme },
+      {
+        id: 'motion',
+        label: prefersReducedMotion() ? ui.motionOn : ui.motionOff,
+        keywords: 'motion animation анимации',
+        run: () => setMotion(prefersReducedMotion()),
+      },
       { id: 'matrix', label: ui.matrix, keywords: 'matrix neo', run: () => setMatrix(true) },
     ].map((a) => ({ ...a, group: ui.action }))
     return [...sections, ...projects, ...misc]
@@ -145,7 +156,10 @@ export default function App() {
   const hideBoot = useCallback(() => setBootShown(false), [])
   const closeMatrix = useCallback(() => setMatrix(false), [])
   const closePalette = useCallback(() => setPalette(false), [])
-  const closeToast = useCallback(() => setToast(null), [])
+  const closeToast = useCallback(() => {
+    storage.set('sessionStorage', 'motionHint', '1') // подсказку показываем раз за сессию
+    setToast(null)
+  }, [])
 
   return (
     <>
@@ -175,7 +189,7 @@ export default function App() {
         <Palette actions={actions} placeholder={t.ui.palette} empty={t.ui.paletteEmpty} onClose={closePalette} />
       )}
       {matrix && <Matrix onClose={closeMatrix} />}
-      {toast && <Toast text={toast} onDone={closeToast} />}
+      {toast && <Toast text={toast} onDone={closeToast} duration={toast === t.ui.motionHint ? 9000 : 4000} />}
       <Cursor />
       {/* Boot поверх уже загружающегося сайта: шрифты и картинки грузятся параллельно */}
       {bootShown && <Boot onReveal={revealSite} onDone={hideBoot} />}

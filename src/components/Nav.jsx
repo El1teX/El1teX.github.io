@@ -1,6 +1,8 @@
 import ScrollProgress from './ScrollProgress.jsx'
+import { prefersReducedMotion, setMotion } from '../hooks/motionPrefs.js'
 
 export default function Nav({ t, lang, setLang, theme, onTheme, onPalette }) {
+  const reduced = prefersReducedMotion()
   const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad/.test(navigator.platform)
   return (
     <header className="nav">
@@ -21,6 +23,14 @@ export default function Nav({ t, lang, setLang, theme, onTheme, onPalette }) {
       </button>
       <button className="nav__btn nav__menu" onClick={onPalette}>
         ☰ {t.ui.menu}
+      </button>
+      <button
+        className={`nav__btn nav__motion${reduced ? ' is-off' : ''}`}
+        onClick={() => setMotion(reduced)}
+        aria-pressed={!reduced}
+        title={reduced ? t.ui.motionOn : t.ui.motionOff}
+      >
+        {reduced ? '▶' : '❚❚'} <span className="nav__motion-label">{t.ui.motionBtn}</span>
       </button>
       <button
         className="nav__btn"

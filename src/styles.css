@@ -536,16 +536,15 @@ main {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  .tl__dot {
-    background: var(--accent);
-  }
-  .tl__dot--pulse {
-    animation: none;
-  }
+/* итоговый выбор (система или переключатель на сайте) — класс на <html> из motionPrefs.js */
+html.reduce-motion {
+  scroll-behavior: auto;
+}
+.reduce-motion .tl__dot {
+  background: var(--accent);
+}
+.reduce-motion .tl__dot--pulse {
+  animation: none;
 }
 
 .amber {
@@ -1189,5 +1188,22 @@ kbd {
   }
   .nav__menu.nav__btn {
     margin-left: auto;
+  }
+}
+
+/* ---------- переключатель анимаций ---------- */
+.nav__motion.is-off {
+  border-color: var(--accent);
+  color: var(--accent);
+  animation: motion-nudge 2.4s ease-in-out infinite;
+}
+@keyframes motion-nudge {
+  50% {
+    box-shadow: 0 0 0 4px rgb(var(--accent-rgb) / 0.18);
+  }
+}
+@media (max-width: 600px) {
+  .nav__motion-label {
+    display: none;
   }
 }

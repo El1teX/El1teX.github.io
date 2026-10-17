@@ -5,8 +5,8 @@ import { links } from '../data.js'
 import { prefersReducedMotion, setMotion } from '../hooks/motionPrefs.js'
 import TypeText from './TypeText.jsx'
 
-const SECTIONS = ['about', 'skills', 'projects', 'history', 'activity', 'contact']
-const COMMANDS = ['help', 'whoami', 'about', 'skills', 'projects', 'open', 'roadmap', 'contact', 'resume', 'cd', 'lang', 'motion', 'matrix', 'clear', 'sudo', 'ls', 'date', 'echo']
+const SECTIONS = ['about', 'skills', 'projects', 'history', 'activity', 'contact', 'uses']
+const COMMANDS = ['help', 'whoami', 'about', 'skills', 'projects', 'open', 'roadmap', 'contact', 'resume', 'uses', 'cd', 'lang', 'motion', 'matrix', 'clear', 'sudo', 'ls', 'date', 'echo']
 
 const QUICK = ['help', 'whoami', 'projects', 'contact', 'resume', 'sudo hire maxim', 'matrix', 'clear']
 
@@ -123,8 +123,17 @@ export default function Shell({ t, lang, setLang, onMatrix }) {
         a.click()
         break
       }
+      case 'uses':
+        say(s.opening('/uses'))
+        setTimeout(() => (location.href = 'uses/'), 300)
+        break
       case 'cd': {
         const target = arg.replace(/^\.?\/?|\/$/g, '')
+        if (target === 'uses') {
+          say(s.cd(target), 'muted')
+          setTimeout(() => (location.href = 'uses/'), 300)
+          break
+        }
         if (!target || target === '~') {
           window.scrollTo({ top: 0, behavior: 'smooth' })
           break

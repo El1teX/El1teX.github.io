@@ -16,6 +16,7 @@ export default function Nav({ t, lang, setLang, theme, onTheme, onPalette }) {
             ./{label}
           </a>
         ))}
+        <a href="uses/">./uses</a>
       </nav>
       <button className="nav__btn nav__k" onClick={onPalette} aria-label={t.ui.palette}>
         <kbd>{isMac ? '⌘' : 'Ctrl'}</kbd>

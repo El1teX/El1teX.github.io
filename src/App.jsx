@@ -133,6 +133,7 @@ export default function App() {
       run: () => window.open(p.demo || p.repo, '_blank', 'noopener'),
     }))
     const misc = [
+      { id: 'uses', label: ui.uses, keywords: 'uses setup tools инструменты', run: () => (location.href = 'uses/') },
       { id: 'cv', label: ui.download, keywords: 'resume cv pdf резюме', run: downloadResume },
       { id: 'tg', label: ui.telegram, keywords: 'contact telegram', run: () => window.open(links.telegram, '_blank', 'noopener') },
       { id: 'gh', label: ui.github, keywords: 'github code', run: () => window.open(links.github, '_blank', 'noopener') },
@@ -182,7 +183,9 @@ export default function App() {
         <Contact t={t} lang={lang} />
       </main>
       <footer className="footer">
-        <span className="muted">// {t.footer}</span>
+        <span className="muted">
+          // {t.footer} · <a href="uses/">uses</a>
+        </span>
         <span className="muted">© {new Date().getFullYear()} Maxim Sereda</span>
       </footer>
       {palette && (

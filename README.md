@@ -17,6 +17,12 @@ npm run build    # сборка в dist/
 Каждый пуш в `main` собирает сайт и выкладывает его на GitHub Pages
 (`.github/workflows/deploy.yml`). Ход сборки — на вкладке **Actions**.
 
+## Страница /uses
+
+https://el1tex.github.io/uses/ — чем я пользуюсь: редакторы, терминал, стек, дизайн, AI-инструменты.
+Отдельная страница (`uses/index.html` + `src/uses.jsx`), текст — в `src/uses-data.js`.
+С главной на неё ведут ссылка `./uses` в шапке, пункт в Ctrl+K и команды `uses` / `cd uses` в терминале.
+
 ## Где что менять
 
 - `src/data.js` — весь текст сайта (RU и EN), проекты, ссылки.

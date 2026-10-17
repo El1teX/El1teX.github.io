@@ -1177,7 +1177,7 @@ kbd {
 .nav__links a {
   white-space: nowrap;
 }
-@media (max-width: 1000px) {
+@media (max-width: 1150px) {
   .nav__links,
   .nav__k,
   .progress__text {
@@ -1204,6 +1204,64 @@ kbd {
 }
 @media (max-width: 600px) {
   .nav__motion-label {
+    display: none;
+  }
+}
+
+/* ---------- страница /uses ---------- */
+.uses__back {
+  margin-left: auto;
+  text-decoration: none;
+}
+.uses__lead {
+  max-width: 62ch;
+  margin: -12px 0 28px;
+}
+.uses {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+.uses__group {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  padding: 18px 20px;
+}
+.uses__group h2 {
+  margin: 0 0 12px;
+  font-size: 15px;
+}
+.uses__group dl {
+  margin: 0;
+}
+.uses__item {
+  display: grid;
+  grid-template-columns: minmax(0, 17ch) 1fr;
+  gap: 12px;
+  padding: 7px 0;
+  border-top: 1px dashed var(--line);
+  font-size: 14px;
+}
+.uses__item:first-child {
+  border-top: 0;
+}
+.uses__item dd {
+  margin: 0;
+}
+@media (max-width: 900px) {
+  .uses {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .uses__item {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+}
+@media (max-width: 1279px) {
+  .progress__text {
     display: none;
   }
 }
